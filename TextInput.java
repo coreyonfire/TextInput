@@ -13,7 +13,7 @@ public class TextInput {
 		if (input.equals("cats")) {
 			System.out.println("You typed cats!");	// here we checked to see if the user typed "cats". the .equals() method is case sensitive, so we had to make sure that both were lowercase.
 		}
-		else if (input.equals("dogs)) {
+		else if (input.equals("dogs")) {
 			System.out.println("You typed dogs!"); 	// here we looked and found dogs. notice that you can combine else and if to form an "else if" statement
 		}
 		else {
