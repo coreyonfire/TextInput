@@ -8,12 +8,12 @@ public class ChunkChewer {
 		/* This program takes a big string of text (or whatever you feed the BufferedReader object) 
 		 * and prints out chunks of it, 256 characters at a time. 
 		 */
-		char[] myBuffer = new char[256];											// create new buffer. our characters will go here when they're read
+		char[] myBuffer = new char[256];							// create new buffer. our characters will go here when they're read
 		BufferedReader in = new BufferedReader(new StringReader(bigJunk));			// create the reader. this thing takes characters from a source (the string reader) until the buffer is full
-		while (in.read(myBuffer,0,256) != -1)										// read the buffer, 256 characters at a time until the read() method returns -1 (meaning there's nothing left to read
+		while (in.read(myBuffer,0,256) != -1)							// read the buffer, 256 characters at a time until the read() method returns -1 (meaning there's nothing left to read
 		{
 		    System.out.println("chunk: " + String.valueOf(myBuffer));				// print out what was in the buffer
-		    myBuffer = new char[256];												// reset the buffer since read() doesn't erase what's in it when it starts putting chars back into the buffer.
+		    myBuffer = new char[256];								// reset the buffer since read() doesn't erase what's in it when it starts putting chars back into the buffer.
 		}
 		in.close();																	// close!
 	}
