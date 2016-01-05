@@ -1,5 +1,8 @@
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 
 public class ChunkChewer {
@@ -8,14 +11,21 @@ public class ChunkChewer {
 		/* This program takes a big string of text (or whatever you feed the BufferedReader object) 
 		 * and prints out chunks of it, 256 characters at a time. 
 		 */
-		char[] myBuffer = new char[256];							// create new buffer. our characters will go here when they're read
-		BufferedReader in = new BufferedReader(new StringReader(bigJunk));			// create the reader. this thing takes characters from a source (the string reader) until the buffer is full
-		while (in.read(myBuffer,0,256) != -1)							// read the buffer, 256 characters at a time until the read() method returns -1 (meaning there's nothing left to read
+		File f = new File("input.txt");									// input file you're reading from. make sure that you have the full file path in here (C:\Users\coreyonfire\Documents\input.txt) or else you'll get a file not found exception.
+		int chunkCounter = 0;
+		char[] myBuffer = new char[256];								// create new buffer. our characters will go here when they're read
+		BufferedReader in = new BufferedReader(new FileReader(f));					// create the reader. this thing takes characters from a source (the string reader) until the buffer is full
+		while (in.read(myBuffer,0,256) != -1)								// read the buffer, 256 characters at a time until the read() method returns -1 (meaning there's nothing left to read
 		{
-		    System.out.println("chunk: " + String.valueOf(myBuffer));				// print out what was in the buffer
-		    myBuffer = new char[256];								// reset the buffer since read() doesn't erase what's in it when it starts putting chars back into the buffer.
+			
+			PrintWriter writer = new PrintWriter("chunk-" + chunkCounter +".txt", "UTF-8");		// write the text out to the file. I have specified different file names for each chunk.
+			writer.println(String.valueOf(myBuffer));						// print out what was in the buffer
+			writer.close();										// close the writer
+		    	myBuffer = new char[256];								// reset the buffer since read() doesn't erase what's in it when it starts putting chars back into the buffer.
+		    	chunkCounter = chunkCounter + 1;							// increment the chunk counter so that i create a new file for the next chunk
 		}
-		in.close();																	// close!
+		in.close();											// close!
+		f.close();
 	}
 	
 	static String littleJunk = "corey";
